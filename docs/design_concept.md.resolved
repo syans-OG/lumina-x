@@ -1,0 +1,64 @@
+# Project Concept: "Lumina X" - Audiophile Experience
+> **Theme:** Luxury, Minimalist, Metallic, Smooth.
+> **Goal:** Create an award-winning scrolling experience while learning React/Next.js.
+
+## 🧠 Multi-Agent Design Review
+
+### 1. Product Agent (The User Advocate)
+*   **Perspective:** "The user is new to React. We cannot overwhelm them with complex state management or backend logic."
+*   **Recommendation:**
+    *   Strictly **One Page** (Single Page Application). No complex routing.
+    *   Focus on **Presentation** over Logic.
+    *   Use ready-made 3D assets (free high-quality models) to save time for coding.
+    *   **MVP:** Header, Hero (3D), Features (Scroll), and Footer.
+
+### 2. Creative Agent (The Art Director)
+*   **Perspective:** "It needs to look expensive. Think Apple, Sony, Bang & Olufsen."
+*   **Visual Direction:**
+    *   **Palette:**
+        *   Background: Deep Charcoal (#0a0a0a) or Pure White (depending on mode, let's go Dark Mode for premium feel).
+        *   Accents: Brushed Titanium, Electric Blue (for lighting), White text.
+    *   **Typography:** 'Inter' or 'Outfit' (Clean Sans-serif). Thin weights for elegance.
+    *   **Motion:** Slow, dampened ease (ease-out-expo). No bouncy animations.
+
+### 3. Tech Agent (The Architect)
+*   **Perspective:** "Next.js is the framework. R3F is the tool. Performance is key."
+*   **Stack Strategy:**
+    *   **Next.js 14+ (App Router):** Modern standard.
+    *   **Tailwind CSS:** For rapid layout.
+    *   **React Three Fiber (R3F):** For the 3D scene.
+    *   **Drei:** Library of R3F helpers (makes 3D easy).
+    *   **GSAP:** For the scroll triggers.
+*   **Risk:** 3D models can be heavy. We must optimize textures.
+
+---
+
+## 🗺️ Project Roadmap (The Learning Path)
+
+### Phase 1: The Foundation (React 101)
+*   Setup Next.js & Tailwind.
+*   Understanding Components: Breaking the UI into chunks (Navbar, Hero, Section).
+*   Basic Styling: "Making it look good static".
+
+### Phase 2: The Dimension (3D World)
+*   Intro to React Three Fiber.
+*   Loading a glorious Headphone model (GLTF).
+*   Lighting & Environment (The "Studio Setup").
+
+### Phase 3: The Magic (Animation)
+*   Connecting Scroll to Animation (GSAP ScrollTrigger).
+*   Moving the camera around the headset as user scrolls.
+*   Exploding the view (parts separation).
+
+### Phase 4: The Polish (Micro-interactions)
+*   Custom smooth cursor.
+*   Hover effects.
+*   Loading screen.
+
+## 🎨 Color Palette (Theme Factory)
+*   **Canvas:** `#050505` (Almost Black)
+*   **Surface:** `#1A1A1A` (Dark Grey)
+*   **Primary:** `#E0E0E0` (Titanium White)
+*   **Accent:** `#2563EB` (International Klein Blue - for LEDs/Highlights)
+
+---

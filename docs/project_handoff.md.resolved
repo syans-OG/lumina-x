@@ -1,0 +1,41 @@
+# Handoff Context: "Lumina X" Project
+
+**For the Next Agent:**
+This user is starting a clean slate project. Please use the following context to guide the implementation.
+
+---
+
+## 🚀 Project Identity
+*   **Name:** Lumina X
+*   **Type:** High-End Product Landing Page (Cinematic/Interactive)
+*   **Product:** Audiophile Headset (3D Model)
+*   **Vibe:** Luxury, Minimalist, Metallic, Dark Mode (References: Apple, Sony, Bang & Olufsen).
+
+## 🛠️ Technology Stack (Strict)
+*   **Framework:** Next.js (App Router)
+*   **Styling:** Tailwind CSS
+*   **3D Engine:** React Three Fiber (R3F) + Drei
+*   **Animation:** GSAP (ScrollTrigger)
+*   **Language:** TypeScript (Recommended) or JavaScript (User is transition form Vanilla, be patient).
+
+## 🎯 User Context & Learning Goals
+*   **Background:** Strong in HTML/CSS/JS. **New to React/Next.js.**
+*   **Goal:** Build a portfolio masterpiece while learning React fundamentals + Advanced Creative Coding.
+*   **Approach:** "Slow and steady". Do not generate the whole app at once. Explain the connection between standard HTML concepts and React Components.
+
+## 📋 Implementation Phase 1 (Instructions for Agent)
+1.  **Initialize:** Guide user to run `npx create-next-app@latest`.
+2.  **Clean Up:** Remove default Next.js boilerplate.
+3.  **Structure:** Create a basic Layout and Hero Section component.
+4.  **Styling:** Setup the "Dark Mode" base colors in Tailwind config.
+
+---
+
+## 📄 Prompt to start (Copy & Paste this to the new chat)
+> "Hi! I am starting the 'Lumina X' project which is a 3D Cinematic Landing Page for a headset.
+>
+> My specific goals are:
+> 1. Learning Next.js and React Three Fiber (I come from a Vanilla JS background).
+> 2. Achieving a Luxury/Dark aesthetic.
+>
+> Please help me initialize the project in this folder using **Next.js + Tailwind**. Let's start with just the installation and cleaning up the boilerplate. Please explain specifically how the file structure works compared to standard HTML/CSS."
