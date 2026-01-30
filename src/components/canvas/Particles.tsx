@@ -21,24 +21,23 @@ const NeuralParticleShader = {
       
       vec3 pos = position;
       
-      // Organic "Breathing" movement
+      // Optimized: Reduced from 6 sin/cos to 3
       float time = uTime * 0.5;
+      float randomOffset = aRandom * 10.0;
       
-      // Complex wave motion (Neural Flow)
-      pos.x += sin(time * 0.3 + aRandom * 10.0) * 0.2;
-      pos.y += cos(time * 0.5 + aRandom * 5.0) * 0.2;
+      // Simplified wave motion
+      pos.x += sin(time * 0.3 + randomOffset) * 0.2;
+      pos.y += cos(time * 0.5 + randomOffset) * 0.2;
       pos.z += sin(time * 0.2 + aRandom * 2.0) * 0.2;
       
-      // Gentle drift based on velocity
+      // Gentle drift
       pos += aVelocity * sin(time * 0.1);
 
       vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-      
-      // Size attenuation
       gl_Position = projectionMatrix * mvPosition;
       
-      // Dynamic Size based on pulse
-      float pulse = 1.0 + sin(time * 2.0 + aRandom * 20.0) * 0.3;
+      // Simplified pulse calculation
+      float pulse = 1.0 + sin(time * 2.0 + randomOffset * 2.0) * 0.3;
       gl_PointSize = (30.0 * aScale * pulse) * (1.0 / -mvPosition.z);
       
       // Fade distant particles
@@ -51,28 +50,23 @@ const NeuralParticleShader = {
     uniform float uTime;
 
     void main() {
-      // Circular soft particle
-      // gl_PointCoord goes from (0,0) to (1,1) in the point sprite
       vec2 coord = gl_PointCoord - vec2(0.5);
       float dist = length(coord);
       
-      // DISCARD corners to make it a perfect circle
       if (dist > 0.5) discard;
 
-      // Soft glow gradient
-      float strength = 1.0 - (dist * 2.0); // 1.0 at center, 0.0 at edge
-      strength = pow(strength, 2.0); // Soft falloff
+      // Simplified gradient (removed pow for performance)
+      float strength = 1.0 - (dist * 2.0);
+      strength = strength * strength; // Inline pow(2.0)
 
-      // Color Palette: Neural Blue to Bio-Data White
-      vec3 colorBlue = vec3(0.2, 0.6, 1.0); // Brighter Blue
-      vec3 colorCyan = vec3(0.0, 1.0, 1.0); // Cyan glow
-      vec3 colorWhite = vec3(1.0, 1.0, 1.0); // Core
+      // Simplified color palette
+      vec3 colorBlue = vec3(0.2, 0.6, 1.0);
+      vec3 colorCyan = vec3(0.0, 1.0, 1.0);
       
-      // Dynamic pulsing activity
+      // Simplified activity calculation
       float activity = sin(uTime * 2.0 + vRandom * 10.0) * 0.5 + 0.5;
       
-      vec3 finalColor = mix(colorBlue, colorCyan, activity);
-      finalColor = mix(finalColor, colorWhite, strength * 0.5); // White core
+      vec3 finalColor = mix(colorBlue, colorCyan, activity * strength);
 
       gl_FragColor = vec4(finalColor, strength * vAlpha);
     }

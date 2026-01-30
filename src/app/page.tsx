@@ -2,7 +2,6 @@
 
 import Hero from "@/components/dom/Hero";
 import SceneContainer from "@/components/dom/SceneContainer";
-import ComparisonSection from "@/components/dom/ComparisonSection";
 import Footer from "@/components/Footer";
 import GenerativeBackground from "@/components/dom/GenerativeBackground";
 import ScrambleText from "@/components/dom/ScrambleText";
@@ -14,13 +13,23 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStore } from "@/store";
 import { useUISound } from "@/hooks/useUISound";
 import StickyNav from "@/components/dom/StickyNav";
-import TechSpecsTable from "@/components/dom/TechSpecsTable";
 import InTheBox from "@/components/dom/InTheBox";
 import TrustGrid from "@/components/dom/TrustGrid";
-import FAQ from "@/components/dom/FAQ";
 import { useAmbientSound } from "@/hooks/useAmbientSound";
 import ToastContainer from "@/components/dom/Toast";
 import CartDrawer from "@/components/dom/CartDrawer";
+import dynamic from "next/dynamic";
+
+// Lazy load heavy below-fold components
+const ComparisonSection = dynamic(() => import("@/components/dom/ComparisonSection"), {
+  loading: () => <div className="min-h-screen" />,
+});
+const TechSpecsTable = dynamic(() => import("@/components/dom/TechSpecsTable"), {
+  loading: () => <div className="min-h-screen" />,
+});
+const FAQ = dynamic(() => import("@/components/dom/FAQ"), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,12 +120,16 @@ export default function Home() {
     gsap.set(configuratorRef.current, { y: 50, autoAlpha: 0 });
     gsap.to(configuratorRef.current, { y: 0, autoAlpha: 1, duration: 1, delay: 1, ease: "power3.out" });
 
+    let scrollTimeout: NodeJS.Timeout;
     ScrollTrigger.create({
       trigger: container.current,
       start: "top top",
       end: "bottom bottom",
       onUpdate: (self) => {
-        updateScroll(self.getVelocity());
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          updateScroll(self.getVelocity());
+        }, 50);
 
         if (configuratorRef.current) {
           if (self.scroll() > window.innerHeight * 0.8) {
@@ -149,7 +162,7 @@ export default function Home() {
       <div id="immersive-wrapper" className="relative w-full">
 
         <div className="sticky top-0 h-screen w-full z-0 overflow-hidden pointer-events-none">
-          <SceneContainer />
+          <SceneContainer className="w-full h-full" />
         </div>
 
         <div className="relative z-10 -mt-[100vh]">

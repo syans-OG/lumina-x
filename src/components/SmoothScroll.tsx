@@ -12,8 +12,14 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     const [lenis, setLenis] = useState<Lenis | null>(null);
 
     useEffect(() => {
+        const isMobile = typeof window !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            return;
+        }
+
         const lenisInstance = new Lenis({
-            duration: 1.5, // Increased for more "premium" heavy feel
+            duration: 1.0,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: "vertical",
             gestureOrientation: "vertical",
